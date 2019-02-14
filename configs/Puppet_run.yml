@@ -2,5 +2,5 @@
 
 project: Puppet_Full_Run
 branch: master
-playbook: Puppet_run.yml
+playbook: manifest.yml
 server_type: por
