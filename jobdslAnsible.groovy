@@ -141,9 +141,10 @@ void createJobs()
     // List all *.yml files
     def cwd = hudson.model.Executor.currentExecutor().currentWorkspace.absolutize()
     def configsGlobal = getConfigFiles(new FilePath(cwd, 'jobdsl/configs/'))
-    def configsDC     = getConfigFiles(new FilePath(cwd, 'jobdsl/configs/' + dataCenter))
-    def configsDCEnv  = getConfigFiles(new FilePath(cwd, 'jobdsl/configs/' + dataCenter + '/' + env))
-    def configFiles = configsGlobal + configsDC + configsDCEnv
+    //def configsDC     = getConfigFiles(new FilePath(cwd, 'jobdsl/configs/' + dataCenter))
+    //def configsDCEnv  = getConfigFiles(new FilePath(cwd, 'jobdsl/configs/' + dataCenter + '/' + env))
+    //def configFiles = configsGlobal + configsDC + configsDCEnv
+    def configFiles = configsGlobal
     println configFiles.values().toString().replace(',', '\n')
 
     def nonDisruptive = false
