@@ -26,7 +26,7 @@ class DeployTemplate {
     static boolean isSecret(name) {
         return name.matches(".*(?i:key|pass|secret).*")
     }
-
+	
 
     // create deployment job except rundeck
     static void create(job, config, nonDisruptive, vmList) {
@@ -141,7 +141,10 @@ def getConfigFiles(dir) {
     return fileMap
 }
 
-void createJobs(String dataCenter, String env) {
+void createJobs(String dataCenter, String env) 
+
+
+{
     def constr = new CustomClassLoaderConstructor(this.class.classLoader)
     def yaml = new Yaml(constr)
 
