@@ -75,9 +75,10 @@ class DeployTemplate {
             steps {
                 ansiblePlaybook(config.playbook) {
                     inventoryPath('Generated_Ansible_Inventory')
-                    if (nonDisruptive) {
-                        limit('$Specific_VM*')
-                    }
+                    // if (nonDisruptive) 
+		//	{
+                  //      limit('$Specific_VM*')
+                    //}
                     credentialsId(config.ansible_ssh_key)
                     vaultCredentialsId(config.ansible_vault_passwd)
                     colorizedOutput(true)
