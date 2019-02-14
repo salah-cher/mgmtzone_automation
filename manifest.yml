@@ -15,8 +15,8 @@
 #    check_mode: no
 #    ignore_errors: yes
     changed_when: false
-    #failed_when: "'FAILED' in checksyntax.stderr or 'Error' in checksyntax.stdout"
-    failed_when: "'error' in checksyntax.stdout"
+    failed_when: "'FAILED' in checksyntax.stderr or 'error' in checksyntax.stdout or  checksyntax.rc != 0"
+    #failed_when: "'error' in checksyntax.stdout"
 
 #  - name: inform if syntax has error
 #    debug: msg="error found in the hiera files"
