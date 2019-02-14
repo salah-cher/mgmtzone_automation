@@ -7,7 +7,6 @@
     * the checkConnectivity utility scripts
 
     At some point in the future we might to merge this Inventory with the Monitoring Inventory:
-    https://enterprise-stash.hybris.com/projects/HCS-PDO-MON/repos/project-x/browse/inventory.py
 '''
 
 import argparse
