@@ -1,0 +1,6 @@
+---
+
+project: Puppet_Full_Run
+branch: master
+playbook: Puppet_run.yml
+server_type: por
