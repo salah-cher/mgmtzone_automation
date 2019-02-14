@@ -82,6 +82,8 @@ class DeployTemplate {
                     credentialsId(config.ansible_ssh_key)
                     vaultCredentialsId(config.ansible_vault_passwd)
                     colorizedOutput(true)
+                    disableHostKeyChecking(true)
+
                     /*
 					for (item in config.parameters) 
 					{
