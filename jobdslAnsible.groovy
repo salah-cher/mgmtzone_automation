@@ -26,6 +26,7 @@ class DeployTemplate {
     static boolean isSecret(name) {
         return name.matches(".*(?i:key|pass|secret).*")
     }
+}
 
     // create deployment job except rundeck
     static void create(job, config, nonDisruptive, vmList) {
