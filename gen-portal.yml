@@ -2,5 +2,5 @@
 
 project: Portal-Tomcat-Ansible-Deploy
 branch: master
-playbook: PortalServer.yml
+playbook: manifest.yml
 server_type: por
