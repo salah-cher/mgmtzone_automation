@@ -1,4 +1,3 @@
-[root@ddv-cmz-ctrld-001 playbooks]# cat manifest.yml
 ---
 - name : Run template syntax check
   hosts: Puppet
