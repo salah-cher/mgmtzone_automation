@@ -1,5 +1,5 @@
 ---
-- name : Run template syntax check
+- name : Run manifest syntax check
   hosts: Puppet
   become: yes
   become_method: sudo
@@ -9,7 +9,7 @@
 
 
   tasks:
-  - name: run manifest syntax check
+  - name: Run manifest syntax check
     script: manifest.sh
     register: checksyntax
 #    check_mode: no
