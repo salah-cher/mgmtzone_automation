@@ -1,0 +1,6 @@
+---
+
+project: Check_template
+branch: master
+playbook: check_template.yml
+server_type: por
