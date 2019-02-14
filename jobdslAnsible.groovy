@@ -94,6 +94,10 @@ class DeployTemplate {
 					*/
                 }
             }
+          postBuildSteps('SUCCESS') 
+                {
+              shell("echo 'run after Maven'")
+            }
         }
     }
 }
