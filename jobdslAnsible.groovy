@@ -68,13 +68,13 @@ class DeployTemplate {
                 }
             }
 
-            steps {
-                shell('${WORKSPACE}/Inventory.py --static > ${WORKSPACE}/Generated_Ansible_Inventory')
-            }
+            //steps {
+            //    shell('${WORKSPACE}/Inventory.py --static > ${WORKSPACE}/Generated_Ansible_Inventory')
+            //}
 
             steps {
                 ansiblePlaybook(config.playbook) {
-                    inventoryPath('Generated_Ansible_Inventory')
+                inventoryPath('Generated_Ansible_Inventory')
                     // if (nonDisruptive) 
 		//	{
                   //      limit('$Specific_VM*')
