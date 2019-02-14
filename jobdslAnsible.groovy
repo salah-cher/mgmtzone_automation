@@ -9,10 +9,10 @@ import org.yaml.snakeyaml.constructor.CustomClassLoaderConstructor
 class ProjectConfig {
     String project
     String repo = "https://github.com/salah-cher/mgmtzone_automation.git"
-    String repo_credentials = "github_Salah_private"
+    String repo_credentials = "SCH_usr_pass_github_private"
     String branch = "master"
     String playbook
-    String ansible_ssh_key = "ansible_ssh_key"
+    String ansible_ssh_key = "ansible_svc_acc"
     String ansible_vault_passwd = "ansible_vault_passwd"
     String server_type
     short servernum = 2
