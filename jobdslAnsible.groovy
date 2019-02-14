@@ -140,7 +140,7 @@ void createJobs()
 
     // List all *.yml files
     def cwd = hudson.model.Executor.currentExecutor().currentWorkspace.absolutize()
-    def configsGlobal = getConfigFiles(new FilePath(cwd, 'jobdsl/configs/'))
+    def configsGlobal = getConfigFiles(new FilePath(cwd, 'configs/'))
     //def configsDC     = getConfigFiles(new FilePath(cwd, 'jobdsl/configs/' + dataCenter))
     //def configsDCEnv  = getConfigFiles(new FilePath(cwd, 'jobdsl/configs/' + dataCenter + '/' + env))
     //def configFiles = configsGlobal + configsDC + configsDCEnv
