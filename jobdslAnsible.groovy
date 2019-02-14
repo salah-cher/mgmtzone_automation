@@ -13,7 +13,7 @@ class ProjectConfig {
     String branch = "master"
     String playbook
     String ansible_ssh_key = "ansible_svc_acc"
-    String ansible_vault_passwd = "ansible_vault_passwd"
+    String ansible_vault_passwd = "vaultpassword"
     String server_type
     short servernum = 2
     String service_user
