@@ -8,6 +8,7 @@ import org.yaml.snakeyaml.constructor.CustomClassLoaderConstructor
 // Class to load the YAML
 class ProjectConfig {
     String project
+    String downstream_job
     String repo = "https://github.com/salah-cher/mgmtzone_automation.git"
     String repo_credentials = "SCH_usr_pass_github_private"
     String branch = "master"
@@ -92,11 +93,13 @@ class DeployTemplate {
                         }
                     }
 					*/
+
+                    if (downstream_job){
+			publishers {
+                     downstream('$downstream_job', 'SUCCESS')
+                               } 
+			}
                 }
-            }
-          postBuildSteps('SUCCESS') 
-                {
-              shell("echo 'run after Maven'")
             }
         }
     }
