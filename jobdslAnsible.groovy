@@ -94,9 +94,9 @@ class DeployTemplate {
                     }
 					*/
 
-                    if (downstream_job){
+                    if (config.downstream_job){
 			publishers {
-                     downstream('$downstream_job', 'SUCCESS')
+                     downstream('config.downstream_job', 'SUCCESS')
                                } 
 			}
                 }
