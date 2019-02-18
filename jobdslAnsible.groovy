@@ -104,7 +104,7 @@ class DeployTemplate {
 			{
 				publishers {
                                     downstreamParameterized {
-                          		trigger(config.downstream1_job) {
+                          		trigger(config.downstream_job1) {
                                		   condition('FAILED')
                                                 parameters {
                                                     currentBuild()
