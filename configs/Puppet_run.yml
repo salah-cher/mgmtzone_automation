@@ -5,3 +5,4 @@ branch: master
 playbook: manifest.yml
 server_type: por
 downstream_job: Hieralint
+downstream_job1: PuppetErrorDisplay

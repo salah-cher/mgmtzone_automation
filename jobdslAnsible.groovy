@@ -9,6 +9,7 @@ import org.yaml.snakeyaml.constructor.CustomClassLoaderConstructor
 class ProjectConfig {
     String project
     String downstream_job
+    String downstream_job1
     String repo = "https://github.com/salah-cher/mgmtzone_automation.git"
     String repo_credentials = "SCH_usr_pass_github_private"
     String branch = "master"
@@ -99,6 +100,22 @@ class DeployTemplate {
                      downstream(config.downstream_job, 'SUCCESS')
                                } 
 			}
+                    if (config.downstream_job1)
+			{
+				publishers {
+                                    downstreamParameterized {
+                          		trigger(config.downstream1_job) {
+                               		   condition('FAILED')
+                                                parameters {
+                                                    currentBuild()
+                                             }
+                                           }
+                                        }
+                                     }   
+			}
+
+
+
                 }
             }
         }
