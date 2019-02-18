@@ -4,4 +4,3 @@ project: Puppet_Full_Run
 branch: master
 playbook: manifest.yml
 server_type: por
-downstream_job: Hieralint
