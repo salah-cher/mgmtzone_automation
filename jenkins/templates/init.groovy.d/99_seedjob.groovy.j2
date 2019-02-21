@@ -1,0 +1,56 @@
+import jenkins.model.*;
+import hudson.model.*;
+import hudson.tasks.Shell;
+import javaposse.jobdsl.plugin.*;
+import java.util.logging.Logger;
+
+def logger = Logger.getLogger("")
+logger.info("Running SeedJob creation groovy script")
+
+// Mad script example: https://github.com/linagora/james-jenkins/blob/master/create-dsl-job.groovy
+
+public void createSeedJob(String folderName, String gitRepoURL, String gitCredentialsId, String gitBranch, String buildTarget) {
+  // Setup folder/SeedJob
+  def folder = Jenkins.instance.getItem(folderName)
+  def seedJob = folder.getItem('SeedJob')
+  if (seedJob == null) {
+    seedJob = folder.createProject(FreeStyleProject.class, 'SeedJob')
+  }
+
+  // Set git
+  seedJob.scm = new hudson.plugins.git.GitSCM(gitRepoURL)
+  seedJob.scm.userRemoteConfigs[0].credentialsId = gitCredentialsId
+  seedJob.scm.branches[0].name = gitBranch
+
+  // jobDSL parsing build step
+  seedJobBuild = new ExecuteDslScripts()
+  seedJobBuild.setTargets(buildTarget)
+  seedJobBuild.setRemovedJobAction(RemovedJobAction.DELETE)
+  seedJobBuild.setRemovedViewAction(RemovedViewAction.DELETE)
+  seedJobBuild.setRemovedConfigFilesAction(RemovedConfigFilesAction.DELETE)
+  seedJobBuild.setLookupStrategy(LookupStrategy.SEED_JOB)
+
+  seedJob.getBuildersList().clear()
+  seedJob.getBuildersList().add(seedJobBuild)
+  seedJob.save()
+}
+
+// Setup SRE_GitHub/SeedJob
+createSeedJob(
+    'SRE_GitHub',
+    'https://github/cmz-automation.git',
+    'github_tools_sap_srv_acc',
+    '*/master',
+    'jobdsl/*.groovy'
+)
+
+// Setup QA/SeedJob
+createSeedJob(
+    'QA',
+    'ssh://git@enterprise-stash.corp.com:7999/assurance.git',
+    'bitbucket_ssh_key',
+    '*/develop',
+    'SeedJob/SeedJob.groovy'
+)
+
+logger.info("End of seedjob creation groovy script")
