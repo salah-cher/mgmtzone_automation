@@ -1,1 +1,39 @@
 ---
+- name : Run Puppet
+  hosts: Web
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  ignore_unreachable: True
+  serial: 1
+ # vars_files:
+ #   - /password.yaml
+
+  tasks:
+
+  - include_tasks: logfile.yml
+    vars:
+      logfilepath: "/tmp/puppet_run"
+
+#  - name: "Run Puppet"
+#    #shell: "source ~/.bash_profile && puppet agent --test  --environment ddv_branch"
+#    shell: "source ~/.bash_profile && puppet agent --test --logdest /tmp/puppet_run"
+#    register: output
+
+#  - debug: msg="{{ output.stdout }}"
+#  - debug: msg={{ output.stdout.split('\n')[:-1] }}
+#  - debug: msg="{{ output.stderr }}"
+
+  - name: "Start puppet agent for Run"
+    shell: /opt/puppetlabs/bin/puppet agent --test --verbose --detailed-exitcodes  --logdest /tmp/puppet_run
+    register: puppet_agent
+    #changed_when: puppet_agent.rc == 2
+    #failed_when: puppet_agent.rc != 2 and puppet_agent.rc != 0
+    ignore_errors: True
+
+  #- name: "Puppet  Run Output"
+  #  debug: var=puppet_agent.stdout_lines
+  #  when: "'FAILED' in puppet_agent.stderr"
+  - name: fail the play if the previous command did not succeed on a particular VM.
+    fail: msg="the Puppet run failed on this node please check log file /tmp/puppet_run"
+    when: "puppet_agent.rc != 0 and puppet_agent.rc != 2"
